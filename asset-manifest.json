@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/API-RICK-AND-MORTI/static/css/main.6f080caa.css",
+    "main.js": "/API-RICK-AND-MORTI/static/js/main.25340b97.js",
+    "index.html": "/API-RICK-AND-MORTI/index.html",
+    "main.6f080caa.css.map": "/API-RICK-AND-MORTI/static/css/main.6f080caa.css.map",
+    "main.25340b97.js.map": "/API-RICK-AND-MORTI/static/js/main.25340b97.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f080caa.css",
+    "static/js/main.25340b97.js"
+  ]
+}
