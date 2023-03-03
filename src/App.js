@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios'
+import { Box,Image } from '@chakra-ui/react';
 
 function App() {
+
+  const [personajes, setPersonajes] = useState([])
+  
+  const busqueda = async ()=>{
+    const response = await axios.get('https://rickandmortyapi.com/api/character')
+    setPersonajes(response.data.results)
+
+  }
+  busqueda()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      {personajes.map(personaje=>(
+           <Box>
+              {personajes.map(personaje=>(
+                <Image src={personaje.img}/>
+              ))}
+
+           </Box> 
+         
+      ))}
+      
     </div>
   );
 }
