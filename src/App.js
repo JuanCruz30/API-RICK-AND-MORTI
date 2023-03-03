@@ -1,31 +1,50 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Box,Image } from '@chakra-ui/react';
+import { Box,Button,Heading,Image } from '@chakra-ui/react';
 
 function App() {
 
   const [personajes, setPersonajes] = useState([])
-  
-  const busqueda = async ()=>{
-    const response = await axios.get('https://rickandmortyapi.com/api/character')
-    setPersonajes(response.data.results)
 
+  const [pagina, setPagina] = useState(1)
+  
+  useEffect(()=>{
+      const busqueda = async ()=>{
+        const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${pagina}`)
+        setPersonajes(response.data.results)
+
+      }
+      busqueda()
+      console.log('hola')
+  },[pagina]);
+
+  const paginaAnterior = () =>{
+    setPagina (pagina - 1)
   }
-  busqueda()
+
+  const paginaSiguiente = () =>{
+    setPagina (pagina + 1)
+  }
+
 
   return (
     <div className="App">
 
-      {personajes.map(personaje=>(
-           <Box>
+            <Button onClick={paginaAnterior}>Anterior</Button>
+
+            <Button onClick={paginaSiguiente}>Siguiente</Button>
+              
               {personajes.map(personaje=>(
-                <Image src={personaje.img}/>
+                <Box key={personaje.id}>
+                    <Heading>{personaje.name}</Heading>
+                    <Image src={personaje.image}/>
+                </Box> 
               ))}
 
-           </Box> 
+           
          
-      ))}
+      
       
     </div>
   );
